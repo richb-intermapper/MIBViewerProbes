@@ -1,3 +1,5 @@
 ReadMe for MIB Viewer Probes
 
-This is a readme file.
+
+It will contain guidance for adding and editing MIB Viewer probes.
+
