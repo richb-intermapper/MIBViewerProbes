@@ -1,0 +1,88 @@
+SYNOLOGY-SYSTEM-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+	enterprises
+				FROM SNMPv2-SMI
+    DisplayString
+				FROM SNMPv2-TC
+    OBJECT-TYPE, INTEGER
+				FROM SNMPv2-SMI
+	synology 
+				FROM SYNOLOGY-DISK-MIB;
+
+synoSystem OBJECT IDENTIFIER ::= { synology 1 }
+
+SystemStatus OBJECT-TYPE
+    SYNTAX	  INTEGER {
+					Normal(1),
+					Failed(2)
+			  }
+    MAX-ACCESS  read-only
+    STATUS	  current
+    DESCRIPTION
+    "Synology system status
+	 Each meanings of status represented describe below.
+	 Normal(1): System functionals normally.
+	 Failed(2): Volume has crashed.
+	"
+    ::= { synoSystem 1 }
+
+Temperature OBJECT-TYPE
+    SYNTAX	  INTEGER
+    MAX-ACCESS  read-only
+    STATUS	  current
+    DESCRIPTION
+    "Synology system temperature
+	 The temperature of Disk Station uses Celsius degree.
+	"
+    ::= { synoSystem 2 }
+
+PowerStatus OBJECT-TYPE
+    SYNTAX	  INTEGER {
+					Normal(1),
+					Failed(2)
+			  }
+    MAX-ACCESS  read-only
+    STATUS	  current
+    DESCRIPTION
+    "Synology power status
+	 Each meanings of status represented describe below.
+	 Normal(1): All power supplies functional normally.
+	 Failed(2): One of power supply has failed.
+	"
+    ::= { synoSystem 3 }
+
+Fan OBJECT IDENTIFIER ::= { synoSystem 4 }
+
+SystemFanStatus OBJECT-TYPE
+    SYNTAX	  INTEGER {
+					Normal(1),
+					Failed(2)
+			  }
+    MAX-ACCESS  read-only
+    STATUS	  current
+    DESCRIPTION
+    "Synology system fan status
+	 Each meanings of status represented describe below.
+	 Normal(1): All Internal fans functional normally.
+	 Failed(2): One of internal fan stopped.
+	"
+    ::= { Fan 1 }
+
+
+CPUFanStatus OBJECT-TYPE
+    SYNTAX	  INTEGER {
+					Normal(1),
+					Failed(2)
+			  }
+    MAX-ACCESS  read-only
+    STATUS	  current
+    DESCRIPTION
+    "Synology cpu fan status
+	 Each meanings of status represented describe below.
+	 Normal(1): All CPU fans functional normally.
+	 Failed(2): One of CPU fan stopped.
+	"
+    ::= { Fan 2 }
+
+END

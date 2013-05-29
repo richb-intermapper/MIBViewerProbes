@@ -1,0 +1,112 @@
+SYNOLOGY-DISK-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+	enterprises
+				FROM SNMPv2-SMI
+    DisplayString
+				FROM SNMPv2-TC
+    OBJECT-TYPE, INTEGER
+				FROM SNMPv2-SMI;
+
+synology	 OBJECT IDENTIFIER 
+	::= { enterprises 6574 }
+synoDisk	OBJECT IDENTIFIER
+	::= { synology 2 }
+
+DiskTable OBJECT-TYPE
+    SYNTAX	   SEQUENCE OF DiskTable
+    MAX-ACCESS	  not-accessible
+    STATUS	   current
+    DESCRIPTION
+    "Synology disk table"
+    ::= { synoDisk 1 }
+
+DiskEntry	  OBJECT-TYPE
+    SYNTAX	   DiskEntry
+    MAX-ACCESS	  not-accessible
+    STATUS	   current
+    DESCRIPTION
+    "For all disk entry"
+    INDEX   { DiskIndex }
+    ::= { DiskTable 1 }
+
+DiskEntry ::= SEQUENCE {
+    DiskIndex		INTEGER,
+    DiskID			OCTET STRING,
+	DiskModel		OCTET STRING,
+	DiskType		OCTET STRING,
+	DiskStatus		INTEGER,
+	DiskTemperature	INTEGER
+}
+
+DiskIndex OBJECT-TYPE
+    SYNTAX	   INTEGER
+    MAX-ACCESS	  not-accessible
+    STATUS	   current
+    DESCRIPTION
+    "The index of disk table"
+    ::= { DiskEntry 1 }
+
+DiskID OBJECT-TYPE
+    SYNTAX	  OCTET STRING
+    MAX-ACCESS  read-only
+    STATUS	  current
+    DESCRIPTION
+    "Synology disk ID
+	 The ID of disk is assigned by Disk Station.
+	"
+    ::= { DiskEntry 2 }
+
+DiskModel OBJECT-TYPE
+    SYNTAX	  OCTET STRING
+    MAX-ACCESS  read-only
+    STATUS	  current
+    DESCRIPTION
+    "Synology disk model name
+	 The disk model name will be showed here.
+	"
+    ::= { DiskEntry 3 }
+
+DiskType OBJECT-TYPE
+    SYNTAX	  OCTET STRING
+    MAX-ACCESS  read-only
+    STATUS	  current
+    DESCRIPTION
+    "Synology disk type
+	 The type of disk will be showed here, including SATA, SSD and so on.
+	"
+    ::= { DiskEntry 4 }
+
+DiskStatus OBJECT-TYPE
+    SYNTAX	  INTEGER {
+					Normal(1),
+					Initialized(2),
+					NotInitialized(3),
+					SystemPartitionFailed(4),
+					Crashed(5)
+			  }
+    MAX-ACCESS  read-only
+    STATUS	  current
+    DESCRIPTION
+    "Synology disk status 
+	 Each meanings of status represented describe below.
+
+	 Normal(1): The hard disk functions normally.
+	 Initialized(2): The hard disk has system partition but no data.
+	 NotInitialized(3):	The hard disk does not have system in system partition.	
+	 SystemPartitionFailed(4): The system partitions on the hard disks are damaged.
+	 Crashed(5): The hard disk has damaged.
+	"
+    ::= { DiskEntry 5 }
+
+DiskTemperature OBJECT-TYPE
+    SYNTAX	   INTEGER
+    MAX-ACCESS	  read-only
+    STATUS	   current
+    DESCRIPTION
+    "Synology disk temperature
+	 The temperature of each disk uses Celsius degree.
+	"
+    ::= { DiskEntry 6 }
+
+END
