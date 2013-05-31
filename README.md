@@ -1,6 +1,6 @@
 #InterMapper MIB Viewer Probes
 
-The MIB Viewer probe builder is a web page tool that creates an InterMapper probe automatically from a MIB. You can see an example of a MIB Viewer probe at: http://forums.intermapper.com/viewtopic.php?t=1871 This is the resulting status window. ![Status Window showing the MIB-2 MIB Viewer Probe](http://download.dartware.com/images/MIBViewer-rfc1213.png)
+The MIB Viewer probe builder is a web page tool that creates an InterMapper probe automatically from a MIB. You can see an example of a MIB Viewer probe at: http://forums.intermapper.com/viewtopic.php?t=1871 
 
 We use the MIB Viewer page to create a probe quickly when a customer sends us a MIB file. You can check out the MIB Viewer tool at: http://bit.ly/InterMapperMIBViewer That page also has instructions for downloading the tool and running it on your own system. 
 
