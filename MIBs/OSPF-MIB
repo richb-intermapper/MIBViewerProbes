@@ -1,4 +1,3 @@
-
 OSPF-MIB DEFINITIONS ::= BEGIN
 
 IMPORTS
@@ -45,6 +44,8 @@ ospf MODULE-IDENTITY
           module may pose a significant security risk.
           Refer to the Security Considerations section
           in RFC 4750 for more information.
+
+
 
           Copyright (C) The IETF Trust (2006).
           This version of this MIB module is part of
@@ -94,6 +95,9 @@ RouterID ::= TEXTUAL-CONVENTION
           "A OSPF Router Identifier.
            Note that the Router ID, in OSPF, has the same format
            as an IP address, but identifies the router independent
+
+
+
            of its IP address."
        SYNTAX       IpAddress
 
@@ -142,6 +146,9 @@ HelloRange ::= TEXTUAL-CONVENTION
 UpToMaxAge ::= TEXTUAL-CONVENTION
        DISPLAY-HINT "d-0"
        STATUS       current
+
+
+
        DESCRIPTION
           "The values in seconds that one might find or configure
           for variables bounded by the maximum age of an LSA."
@@ -190,6 +197,9 @@ OspfAuthenticationType ::= TEXTUAL-CONVENTION
        DESCRIPTION
           "The authentication type."
        SYNTAX       INTEGER {
+
+
+
                        none (0),
                        simplePassword (1),
                        md5 (2)
@@ -238,6 +248,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        SYNTAX       INTEGER { version2 (2) }
        MAX-ACCESS   read-only
        STATUS       current
+
+
+
        DESCRIPTION
           "The current version number of the OSPF protocol is 2."
        REFERENCE
@@ -286,6 +299,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
   ospfExternLsaCksumSum OBJECT-TYPE
         SYNTAX       Integer32
         MAX-ACCESS   read-only
+
+
+
         STATUS       current
         DESCRIPTION
            "The 32-bit sum of the LS checksums of
@@ -334,6 +350,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        MAX-ACCESS   read-only
        STATUS       current
        DESCRIPTION
+
+
+
           "The number of link state advertisements received
           that are determined to be new instantiations.
           This number does not include newer instantiations
@@ -382,6 +401,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           multicast extensions to OSPF.
 
           Bit 0, if set, indicates that the router can
+
+
+
           forward IP multicast datagrams in the router's
           directly attached areas (called intra-area
           multicast routing).
@@ -430,6 +452,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
   ospfDemandExtensions OBJECT-TYPE
        SYNTAX       TruthValue
        MAX-ACCESS   read-write
+
+
+
        STATUS       current
        DESCRIPTION
           "The router's support for demand routing.
@@ -478,6 +503,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        STATUS       current
        DESCRIPTION
           "Reference bandwidth in kilobits/second for
+
+
+
           calculating default interface metrics.  The
           default value is 100,000 KBPS (100 MBPS).
 
@@ -526,6 +554,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
 
            This object is persistent and when written
            the entity SHOULD save the change to non-volatile
+
+
+
            storage."
        ::= { ospfGeneralGroup 20 }
 
@@ -574,6 +605,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        SYNTAX       Gauge32
        MAX-ACCESS   read-only
        STATUS       current
+
+
+
        DESCRIPTION
            "The number of AS-scope link state
            advertisements in the AS-scope link state database."
@@ -622,6 +656,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
 
   ospfDiscontinuityTime OBJECT-TYPE
       SYNTAX     TimeStamp
+
+
+
       MAX-ACCESS read-only
       STATUS     current
       DESCRIPTION
@@ -669,6 +706,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           storage."
        INDEX { ospfAreaId }
        ::= { ospfAreaTable 1 }
+
+
+
 
   OspfAreaEntry ::=
         SEQUENCE {
@@ -718,6 +758,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        SYNTAX       OspfAuthenticationType
        MAX-ACCESS   read-create
        STATUS       obsolete
+
+
+
        DESCRIPTION
           "The authentication type specified for an area."
        REFERENCE
@@ -766,6 +809,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           "The total number of Area Border Routers reachable
           within this area.  This is initially zero and is
           calculated in each Shortest Path First (SPF) pass."
+
+
+
        ::= { ospfAreaEntry 5 }
 
   ospfAsBdrRtrCount OBJECT-TYPE
@@ -814,6 +860,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        MAX-ACCESS   read-create
        STATUS       current
        DESCRIPTION
+
+
+
           "The variable ospfAreaSummary controls the
           import of summary LSAs into stub and NSSA areas.
           It has no effect on other areas.
@@ -862,6 +911,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        DESCRIPTION
           "Indicates if and how an NSSA border router is
           performing NSSA translation of type-7 LSAs into type-5
+
+
+
           LSAs.  When this object is set to enabled, the NSSA Border
           router's OspfAreaNssaExtTranslatorRole has been set to
           always.  When this object is set to elected, a candidate
@@ -910,6 +962,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
 
   ospfStubAreaEntry OBJECT-TYPE
        SYNTAX       OspfStubAreaEntry
+
+
+
        MAX-ACCESS   not-accessible
        STATUS      current
        DESCRIPTION
@@ -958,6 +1013,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        DESCRIPTION
           "The Type of Service associated with the
           metric.  On creation, this can be derived from
+
+
+
           the instance."
        ::= { ospfStubAreaEntry 2 }
 
@@ -1006,6 +1064,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        SYNTAX       SEQUENCE OF OspfLsdbEntry
        MAX-ACCESS   not-accessible
        STATUS       current
+
+
+
        DESCRIPTION
           "The OSPF Process's link state database (LSDB).
            The LSDB contains the link state advertisements
@@ -1054,6 +1115,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           the LSA was received."
        REFERENCE
           "OSPF Version 2, Appendix C.2 Area parameters"
+
+
+
        ::= { ospfLsdbEntry 1 }
 
   ospfLsdbType OBJECT-TYPE
@@ -1102,6 +1166,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        MAX-ACCESS   read-only -- read-only since originally an
                               -- SMIv1 index
        STATUS       current
+
+
+
        DESCRIPTION
           "The 32-bit number that uniquely identifies the
           originating router in the Autonomous System."
@@ -1150,6 +1217,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           is excepted so that an advertisement's age can be
           incremented without updating the checksum.  The checksum
           used is the same that is used for ISO connectionless
+
+
+
           datagrams; it is commonly referred to as the
           Fletcher checksum."
         REFERENCE
@@ -1198,6 +1268,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        MAX-ACCESS   not-accessible
        STATUS       obsolete
        DESCRIPTION
+
+
+
           "A single area address range.
 
           Information in this table is persistent and when this object
@@ -1245,6 +1318,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        REFERENCE
           "OSPF Version 2, Appendix C.2 Area parameters"
        ::= { ospfAreaRangeEntry 2 }
+
+
+
 
   ospfAreaRangeMask OBJECT-TYPE
        SYNTAX       IpAddress
@@ -1294,6 +1370,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        STATUS       current
        DESCRIPTION
           "The Host/Metric Table indicates what hosts are directly
+
+
+
           attached to the router, what metrics and types
           of service should be advertised for them,
           and what areas they are found within."
@@ -1343,6 +1422,8 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           "OSPF Version 2, Appendix C.7 Host route parameters"
        ::= { ospfHostEntry 1 }
 
+
+
   ospfHostTOS OBJECT-TYPE
        SYNTAX       TOSType
        MAX-ACCESS   read-only -- read-only since originally an
@@ -1391,6 +1472,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
 
   ospfHostCfgAreaID OBJECT-TYPE
        SYNTAX       AreaID
+
+
+
        MAX-ACCESS   read-create
        STATUS       current
        DESCRIPTION
@@ -1439,6 +1523,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           ospfIfType
              INTEGER,
           ospfIfAdminStat
+
+
+
              Status,
           ospfIfRtrPriority
              DesignatedRouterPriority,
@@ -1487,6 +1574,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        STATUS       current
        DESCRIPTION
           "The IP address of this OSPF interface."
+
+
+
        ::= { ospfIfEntry 1 }
 
   ospfAddressLessIf OBJECT-TYPE
@@ -1535,6 +1625,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
 
   ospfIfAdminStat OBJECT-TYPE
        SYNTAX       Status
+
+
+
        MAX-ACCESS   read-create
        STATUS       current
        DESCRIPTION
@@ -1583,6 +1676,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           "The number of seconds between link state advertisement
           retransmissions, for adjacencies belonging to this
           interface.  This value is also used when retransmitting
+
+
+
           database description and Link State request packets.
           Note that minimal value SHOULD be 1 second."
        DEFVAL { 5 }
@@ -1631,6 +1727,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
                        down (1),
                        loopback (2),
                        waiting (3),
+
+
+
                        pointToPoint (4),
                        designatedRouter (5),
                        backupDesignatedRouter (6),
@@ -1679,6 +1778,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        SYNTAX       OCTET STRING (SIZE (0..256))
        MAX-ACCESS   read-create
        STATUS       current
+
+
+
        DESCRIPTION
           "The cleartext password used as an OSPF
           authentication key when simplePassword security
@@ -1727,6 +1829,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
                        blocked (1), -- no multicast forwarding
                        multicast (2), -- using multicast address
                        unicast (3) -- to each OSPF neighbor
+
+
+
                        }
        MAX-ACCESS   read-create
        STATUS       current
@@ -1776,6 +1881,8 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           in this interface's link-local link state database."
        ::= { ospfIfEntry 21 }
 
+
+
   ospfIfLsaCksumSum OBJECT-TYPE
        SYNTAX       Unsigned32
        MAX-ACCESS   read-only
@@ -1824,6 +1931,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           For the purposes of this specification, the measure of
           bandwidth:
 
+
+
+
           Metric = referenceBandwidth / ifSpeed
 
           is the default value.
@@ -1871,6 +1981,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           ospfIfMetricAddressLessIf,
           ospfIfMetricTOS }
        ::= { ospfIfMetricTable 1 }
+
+
+
 
   OspfIfMetricEntry ::=
        SEQUENCE {
@@ -1921,6 +2034,8 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           instance."
        ::= { ospfIfMetricEntry 3 }
 
+
+
   ospfIfMetricValue OBJECT-TYPE
        SYNTAX       Metric
        MAX-ACCESS   read-create
@@ -1969,6 +2084,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           Information in this table is persistent and when this object
           is written the entity SHOULD save the change to non-volatile
           storage."
+
+
+
        INDEX { ospfVirtIfAreaId, ospfVirtIfNeighbor }
        ::= { ospfVirtIfTable 1 }
 
@@ -2017,6 +2135,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        MAX-ACCESS   read-only -- read-only since originally an
                               -- SMIv1 index
        STATUS       current
+
+
+
        DESCRIPTION
           "The Router ID of the virtual neighbor."
        ::= { ospfVirtIfEntry 2 }
@@ -2065,6 +2186,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        ::= { ospfVirtIfEntry 5 }
 
   ospfVirtIfRtrDeadInterval OBJECT-TYPE
+
+
+
        SYNTAX       PositiveInteger
        UNITS        "seconds"
        MAX-ACCESS   read-create
@@ -2114,6 +2238,8 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           cryptogaphic (e.g., MD5) authentication key under
           any circumstance.
 
+
+
           If the key length is shorter than 8 octets, the
           agent will left adjust and zero fill to 8 octets.
 
@@ -2162,6 +2288,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        REFERENCE
           "OSPF Version 2, Appendix E Authentication"
        DEFVAL { none } -- no authentication, by default
+
+
+
        ::= { ospfVirtIfEntry 11 }
 
   ospfVirtIfLsaCount OBJECT-TYPE
@@ -2210,6 +2339,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
 
           Information in this table is persistent and when this object
           is written the entity SHOULD save the change to non-volatile
+
+
+
           storage."
        REFERENCE
           "OSPF Version 2, Section 10 The Neighbor Data
@@ -2258,6 +2390,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           "The IP address this neighbor is using in its
           IP source address.  Note that, on addressless
           links, this will not be 0.0.0.0 but the
+
+
+
           address of another of the neighbor's interfaces."
        ::= { ospfNbrEntry 1 }
 
@@ -2306,6 +2441,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           capable of routing IP multicast datagrams, that is
           that it implements the multicast extensions to
           OSPF.
+
+
+
           Bit 3, if set, indicates that the associated
           area is an NSSA.  These areas are capable of
           carrying type-7 external advertisements, which
@@ -2354,6 +2492,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        MAX-ACCESS   read-only
        STATUS       current
        DESCRIPTION
+
+
+
           "The number of times this neighbor relationship
           has changed state or an error has occurred.
 
@@ -2402,6 +2543,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
    ospfNbrHelloSuppressed OBJECT-TYPE
        SYNTAX       TruthValue
        MAX-ACCESS   read-only
+
+
+
        STATUS       current
        DESCRIPTION
           "Indicates whether Hellos are being suppressed
@@ -2449,6 +2593,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        ::= { ospfNbrEntry 14 }
 
 --  OSPF Virtual Neighbor Table
+
+
+
 
   ospfVirtNbrTable OBJECT-TYPE
        SYNTAX       SEQUENCE OF OspfVirtNbrEntry
@@ -2498,6 +2645,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           }
 
   ospfVirtNbrArea OBJECT-TYPE
+
+
+
        SYNTAX       AreaID
        MAX-ACCESS   read-only -- read-only since originally an
                               -- SMIv1 index
@@ -2546,6 +2696,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        SYNTAX       INTEGER {
                        down (1),
                        attempt (2),
+
+
+
                        init (3),
                        twoWay (4),
                        exchangeStart (5),
@@ -2594,6 +2747,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        SYNTAX       INTEGER { notHelping (1),
                               helping (2)
                             }
+
+
+
        MAX-ACCESS   read-only
        STATUS       current
        DESCRIPTION
@@ -2642,6 +2798,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           This table is identical to the OSPF LSDB Table
           in format, but contains only external link state
           advertisements.  The purpose is to allow external
+
+
+
           LSAs to be displayed once for the router rather
           than once in each non-stub area.
 
@@ -2690,6 +2849,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           Each link state type has a separate advertisement
           format."
        REFERENCE
+
+
+
           "OSPF Version 2, Appendix A.4.1 The Link State
           Advertisement header"
 
@@ -2739,6 +2901,8 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           number"
        ::= { ospfExtLsdbEntry 4 }
 
+
+
   ospfExtLsdbAge OBJECT-TYPE
        SYNTAX       Integer32 -- Should be 0..MaxAge, except when
                               -- doNotAge bit is set
@@ -2787,6 +2951,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
 
 --     The IP Forwarding Table defines a number of objects for use by
 --     the routing protocol to externalize its information.  Most of
+
+
+
 --     the variables (ipForwardDest, ipForwardMask, ipForwardPolicy,
 --     ipForwardNextHop, ipForwardIfIndex, ipForwardType,
 --     ipForwardProto, ipForwardAge, and ipForwardNextHopAS) are
@@ -2835,6 +3002,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        SYNTAX       SEQUENCE OF OspfAreaAggregateEntry
        MAX-ACCESS   not-accessible
        STATUS       current
+
+
+
        DESCRIPTION
           "The Area Aggregate Table acts as an adjunct
            to the Area Table.  It describes those address aggregates
@@ -2883,6 +3053,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           ospfAreaAggregateMask
              IpAddress,
           ospfAreaAggregateStatus
+
+
+
              RowStatus,
           ospfAreaAggregateEffect
              INTEGER,
@@ -2930,6 +3103,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        REFERENCE
           "OSPF Version 2, Appendix C.2 Area parameters"
        ::= { ospfAreaAggregateEntry 3 }
+
+
+
 
   ospfAreaAggregateMask OBJECT-TYPE
        SYNTAX       IpAddress
@@ -2979,6 +3155,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        DESCRIPTION
           "External route tag to be included in NSSA (type-7)
            LSAs."
+
+
+
        DEFVAL { 0 }
        ::= { ospfAreaAggregateEntry 7 }
 
@@ -3027,6 +3206,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
              IpAddress,
           ospfLocalLsdbRouterId
              RouterID,
+
+
+
           ospfLocalLsdbSequence
              Integer32,
           ospfLocalLsdbAge
@@ -3075,6 +3257,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        ::= { ospfLocalLsdbEntry 3 }
 
   ospfLocalLsdbLsid OBJECT-TYPE
+
+
+
        SYNTAX       IpAddress
        MAX-ACCESS   not-accessible
        STATUS       current
@@ -3123,6 +3308,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        MAX-ACCESS   read-only
        STATUS       current
        DESCRIPTION
+
+
+
           "This field is the age of the link state
           advertisement in seconds."
        REFERENCE
@@ -3170,6 +3358,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        DESCRIPTION
           "The OSPF Process's link-local link state database
           for virtual links.
+
+
+
 
           This table is identical to the OSPF LSDB Table
           in format, but contains only link-local Link State
@@ -3219,6 +3410,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           }
 
   ospfVirtLocalLsdbTransitArea OBJECT-TYPE
+
+
+
        SYNTAX       AreaID
        MAX-ACCESS   not-accessible
        STATUS       current
@@ -3267,6 +3461,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
 
   ospfVirtLocalLsdbRouterId OBJECT-TYPE
        SYNTAX       RouterID
+
+
+
        MAX-ACCESS   not-accessible
        STATUS       current
        DESCRIPTION
@@ -3315,6 +3512,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           "This field is the checksum of the complete
           contents of the advertisement, excepting the
           age field.  The age field is excepted so that
+
+
+
           an advertisement's age can be incremented
           without updating the checksum.  The checksum
           used is the same that is used for ISO
@@ -3363,6 +3563,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
 
   ospfAsLsdbEntry OBJECT-TYPE
        SYNTAX       OspfAsLsdbEntry
+
+
+
        MAX-ACCESS   not-accessible
        STATUS       current
        DESCRIPTION
@@ -3411,6 +3614,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        DESCRIPTION
           "The Link State ID is an LS Type Specific field
           containing either a Router ID or an IP address;
+
+
+
           it identifies the piece of the routing domain
           that is being described by the advertisement."
        REFERENCE
@@ -3458,6 +3664,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
        REFERENCE
           "OSPF Version 2, Section 12.1.1 LS age"
        ::= { ospfAsLsdbEntry 5 }
+
+
+
 
   ospfAsLsdbChecksum OBJECT-TYPE
        SYNTAX       Integer32
@@ -3507,6 +3716,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
           STATUS       current
           DESCRIPTION
              "An entry with a number of link advertisements
+
+
+
               of a given type for a given area."
           INDEX { ospfAreaLsaCountAreaId, ospfAreaLsaCountLsaType }
           ::= { ospfAreaLsaCountTable 1 }
@@ -3554,6 +3766,9 @@ ospfGeneralGroup OBJECT IDENTIFIER ::= { ospf 1 }
          ::= { ospfAreaLsaCountEntry 3 }
 
 -- conformance information
+
+
+
 
 ospfConformance OBJECT IDENTIFIER ::= { ospf 15 }
 
@@ -3603,6 +3818,9 @@ ospfCompliances OBJECT IDENTIFIER ::= { ospfConformance 2 }
           ospfAreaGroup2,
           ospfStubAreaGroup,
           ospfIfGroup2,
+
+
+
           ospfIfMetricGroup,
           ospfVirtIfGroup2,
           ospfNbrGroup2,
@@ -3652,6 +3870,8 @@ ospfCompliances OBJECT IDENTIFIER ::= { ospfConformance 2 }
              which are no longer required for OSPF systems."
        ::= { ospfCompliances 3 }
 
+
+
 --  units of conformance
 
   ospfBasicGroup    OBJECT-GROUP
@@ -3700,6 +3920,9 @@ ospfCompliances OBJECT IDENTIFIER ::= { ospfConformance 2 }
        OBJECTS {
           ospfStubAreaId,
           ospfStubTOS,
+
+
+
           ospfStubMetric,
           ospfStubStatus,
           ospfStubMetricType
@@ -3748,6 +3971,9 @@ ospfCompliances OBJECT IDENTIFIER ::= { ospfConformance 2 }
           ospfHostTOS,
           ospfHostMetric,
           ospfHostStatus,
+
+
+
           ospfHostAreaID
           }
        STATUS       deprecated
@@ -3796,6 +4022,9 @@ ospfCompliances OBJECT IDENTIFIER ::= { ospfConformance 2 }
        STATUS       current
        DESCRIPTION
           "These objects are used for OSPF systems for supporting
+
+
+
           interface metrics."
        ::= { ospfGroups 8 }
 
@@ -3844,6 +4073,9 @@ ospfCompliances OBJECT IDENTIFIER ::= { ospfConformance 2 }
        OBJECTS {
           ospfVirtNbrArea,
           ospfVirtNbrRtrId,
+
+
+
           ospfVirtNbrIpAddr,
           ospfVirtNbrOptions,
           ospfVirtNbrState,
@@ -3892,6 +4124,9 @@ ospfCompliances OBJECT IDENTIFIER ::= { ospfConformance 2 }
        DESCRIPTION
           "These objects are used for OSPF systems to support
           network prefix aggregation across areas."
+
+
+
        ::= { ospfGroups 13 }
 
   ospfLocalLsdbGroup    OBJECT-GROUP
@@ -3940,6 +4175,9 @@ ospfCompliances OBJECT IDENTIFIER ::= { ospfConformance 2 }
           ospfRouterId,
           ospfAdminStat,
           ospfVersionNumber,
+
+
+
           ospfAreaBdrRtrStatus,
           ospfASBdrRtrStatus,
           ospfExternLsaCount,
@@ -3988,6 +4226,9 @@ ospfCompliances OBJECT IDENTIFIER ::= { ospfConformance 2 }
           ospfAreaNssaTranslatorStabilityInterval,
           ospfAreaNssaTranslatorEvents
           }
+
+
+
        STATUS       current
        DESCRIPTION
             "These objects are used by OSPF systems
@@ -4036,6 +4277,9 @@ ospfCompliances OBJECT IDENTIFIER ::= { ospfConformance 2 }
           ospfVirtIfEvents,
           ospfVirtIfAuthType,
           ospfVirtIfAuthKey,
+
+
+
           ospfVirtIfStatus,
           ospfVirtIfLsaCount,
           ospfVirtIfLsaCksumSum,
@@ -4084,6 +4328,9 @@ ospfCompliances OBJECT IDENTIFIER ::= { ospfConformance 2 }
           ospfVirtNbrRestartHelperStatus,
           ospfVirtNbrRestartHelperAge,
           ospfVirtNbrRestartHelperExitReason
+
+
+
           }
        STATUS       current
        DESCRIPTION
@@ -4132,6 +4379,9 @@ ospfCompliances OBJECT IDENTIFIER ::= { ospfConformance 2 }
        ::= { ospfGroups 25 }
 
 --     This object group is included for SMI conformance.  It is not a
+
+
+
 --     mandatory group for compliance with this MIB
 
   ospfObsoleteGroup    OBJECT-GROUP
@@ -4146,587 +4396,3 @@ ospfCompliances OBJECT IDENTIFIER ::= { ospfConformance 2 }
        ::= { ospfGroups 26 }
 
 END
-
-   OSPF-TRAP-MIB DEFINITIONS ::= BEGIN
-
-   IMPORTS
-       MODULE-IDENTITY, OBJECT-TYPE, NOTIFICATION-TYPE, IpAddress
-                    FROM SNMPv2-SMI
-       MODULE-COMPLIANCE, OBJECT-GROUP, NOTIFICATION-GROUP
-                    FROM SNMPv2-CONF
-       ospfRouterId, ospfIfIpAddress, ospfAddressLessIf, ospfIfState,
-       ospfVirtIfAreaId, ospfVirtIfNeighbor, ospfVirtIfState,
-       ospfNbrIpAddr, ospfNbrAddressLessIndex, ospfNbrRtrId,
-       ospfNbrState, ospfVirtNbrArea, ospfVirtNbrRtrId,
-       ospfVirtNbrState, ospfLsdbType, ospfLsdbLsid, ospfLsdbRouterId,
-       ospfLsdbAreaId, ospfExtLsdbLimit, ospf, ospfAreaId,
-       ospfAreaNssaTranslatorState, ospfRestartStatus,
-       ospfRestartInterval, ospfRestartExitReason,
-       ospfNbrRestartHelperStatus, ospfNbrRestartHelperAge,
-       ospfNbrRestartHelperExitReason, ospfVirtNbrRestartHelperStatus,
-       ospfVirtNbrRestartHelperAge, ospfVirtNbrRestartHelperExitReason
-                    FROM OSPF-MIB;
-
-     ospfTrap MODULE-IDENTITY
-
-          LAST-UPDATED "200611100000Z" -- November 10, 2006 00:00:00 EST
-          ORGANIZATION "IETF OSPF Working Group"
-          CONTACT-INFO
-          "WG E-Mail: ospf@ietf.org
-
-           WG Chairs: acee@cisco.com
-                      rohit@gmail.com
-
-           Editors:   Dan Joyal
-                      Nortel
-                      600 Technology Park Drive
-                      Billerica, MA  01821
-                      djoyal@nortel.com
-
-                      Piotr Galecki
-                      Airvana
-                      19 Alpha Road
-                      Chelmsford, MA 01824
-                      pgalecki@airvana.com
-
-                      Spencer Giacalone
-                      CSFB
-                      Eleven Madison Ave
-                      New York, NY 10010-3629
-                      spencer.giacalone@gmail.com"
-
-          DESCRIPTION
-             "The MIB module to describe traps for the OSPF
-             Version 2 Protocol.
-
-             Copyright (C) The IETF Trust (2006).
-             This version of this MIB module is part of
-             RFC 4750;  see the RFC itself for full legal
-             notices."
-
-          REVISION "200611100000Z" -- November 10, 2006 00:00:00 EST
-          DESCRIPTION
-             "Updated for latest changes to OSPFv2:
-              -added graceful restart related traps
-              -added new config error types
-              -added ospfNssaTranslatorStatusChange trap.
-              See Appendix B of RFC 4750 for more details.
-
-             This version published as part of RFC 4750"
-
-          REVISION "199501201225Z" -- Fri Jan 20 12:25:50 PST 1995
-          DESCRIPTION
-             "The initial SMIv2 revision of this MIB module, published
-             in RFC 1850."
-
-          ::= { ospf 16 }
-
-   --  Trap Support Objects
-
-   --  The following are support objects for the OSPF traps.
-
-     ospfTrapControl OBJECT IDENTIFIER ::= { ospfTrap 1 }
-     ospfTraps OBJECT IDENTIFIER ::= { ospfTrap 2 }
-
-     ospfSetTrap OBJECT-TYPE
-          SYNTAX       OCTET STRING (SIZE(4))
-          MAX-ACCESS   read-write
-          STATUS       current
-          DESCRIPTION
-             "A 4-octet string serving as a bit map for
-             the trap events defined by the OSPF traps.  This
-             object is used to enable and disable specific
-             OSPF traps where a 1 in the bit field
-             represents enabled.  The right-most bit (least
-             significant) represents trap 0.
-
-             This object is persistent and when written
-             the entity SHOULD save the change to non-volatile
-             storage."
-           ::= { ospfTrapControl 1 }
-
-     ospfConfigErrorType OBJECT-TYPE
-          SYNTAX       INTEGER {
-                          badVersion (1),
-                          areaMismatch (2),
-                          unknownNbmaNbr (3), -- Router is DR eligible
-                          unknownVirtualNbr (4),
-                          authTypeMismatch(5),
-                          authFailure (6),
-                          netMaskMismatch (7),
-                          helloIntervalMismatch (8),
-                          deadIntervalMismatch (9),
-                          optionMismatch (10),
-                          mtuMismatch (11),
-                          duplicateRouterId (12),
-                          noError (13) }
-          MAX-ACCESS   read-only
-          STATUS   current
-          DESCRIPTION
-             "Potential types of configuration conflicts.
-             Used by the ospfConfigError and
-             ospfConfigVirtError traps.  When the last value
-             of a trap using this object is needed, but no
-             traps of that type have been sent, this value
-             pertaining to this object should be returned as
-             noError."
-          ::= { ospfTrapControl 2 }
-
-     ospfPacketType OBJECT-TYPE
-          SYNTAX       INTEGER {
-                          hello (1),
-                          dbDescript (2),
-                          lsReq (3),
-                          lsUpdate (4),
-                          lsAck (5),
-                          nullPacket (6) }
-          MAX-ACCESS   read-only
-          STATUS       current
-          DESCRIPTION
-             "OSPF packet types.  When the last value of a trap
-             using this object is needed, but no traps of
-             that type have been sent, this value pertaining
-             to this object should be returned as nullPacket."
-          ::= { ospfTrapControl 3 }
-
-     ospfPacketSrc OBJECT-TYPE
-          SYNTAX       IpAddress
-          MAX-ACCESS   read-only
-          STATUS       current
-          DESCRIPTION
-             "The IP address of an inbound packet that cannot
-             be identified by a neighbor instance.  When
-             the last value of a trap using this object is
-             needed, but no traps of that type have been sent,
-             this value pertaining to this object should
-             be returned as 0.0.0.0."
-          ::= { ospfTrapControl 4 }
-
-   --  Traps
-
-     ospfVirtIfStateChange NOTIFICATION-TYPE
-          OBJECTS { ospfRouterId, -- The originator of the trap
-             ospfVirtIfAreaId,
-             ospfVirtIfNeighbor,
-             ospfVirtIfState  -- The new state
-             }
-          STATUS       current
-          DESCRIPTION
-             "An ospfVirtIfStateChange trap signifies that there
-             has been a change in the state of an OSPF virtual
-             interface.
-
-             This trap should be generated when the interface
-             state regresses (e.g., goes from Point-to-Point to Down)
-             or progresses to a terminal state
-             (i.e., Point-to-Point)."
-          ::= { ospfTraps 1 }
-
-     ospfNbrStateChange NOTIFICATION-TYPE
-          OBJECTS { ospfRouterId, -- The originator of the trap
-             ospfNbrIpAddr,
-             ospfNbrAddressLessIndex,
-             ospfNbrRtrId,
-             ospfNbrState  -- The new state
-             }
-          STATUS       current
-          DESCRIPTION
-             "An ospfNbrStateChange trap signifies that
-             there has been a change in the state of a
-             non-virtual OSPF neighbor.  This trap should be
-             generated when the neighbor state regresses
-             (e.g., goes from Attempt or Full to 1-Way or
-             Down) or progresses to a terminal state (e.g.,
-             2-Way or Full).  When an neighbor transitions
-             from or to Full on non-broadcast multi-access
-             and broadcast networks, the trap should be
-             generated by the designated router.  A designated
-             router transitioning to Down will be noted by
-             ospfIfStateChange."
-          ::= { ospfTraps 2 }
-
-     ospfVirtNbrStateChange NOTIFICATION-TYPE
-          OBJECTS { ospfRouterId, -- The originator of the trap
-             ospfVirtNbrArea,
-             ospfVirtNbrRtrId,
-             ospfVirtNbrState  -- The new state
-             }
-          STATUS       current
-          DESCRIPTION
-             "An ospfVirtNbrStateChange trap signifies that there
-             has been a change in the state of an OSPF virtual
-             neighbor.  This trap should be generated
-             when the neighbor state regresses (e.g., goes
-             from Attempt or Full to 1-Way or Down) or
-             progresses to a terminal state (e.g., Full)."
-          ::= { ospfTraps 3 }
-
-     ospfIfConfigError NOTIFICATION-TYPE
-          OBJECTS { ospfRouterId, -- The originator of the trap
-             ospfIfIpAddress,
-             ospfAddressLessIf,
-             ospfPacketSrc,  -- The source IP address
-             ospfConfigErrorType, -- Type of error
-             ospfPacketType
-             }
-          STATUS       current
-          DESCRIPTION
-             "An ospfIfConfigError trap signifies that a
-             packet has been received on a non-virtual
-             interface from a router whose configuration
-             parameters conflict with this router's
-             configuration parameters.  Note that the event
-             optionMismatch should cause a trap only if it
-             prevents an adjacency from forming."
-          ::= { ospfTraps 4 }
-
-     ospfVirtIfConfigError NOTIFICATION-TYPE
-          OBJECTS { ospfRouterId, -- The originator of the trap
-             ospfVirtIfAreaId,
-             ospfVirtIfNeighbor,
-             ospfConfigErrorType, -- Type of error
-             ospfPacketType
-             }
-          STATUS       current
-          DESCRIPTION
-             "An ospfVirtIfConfigError trap signifies that a
-             packet has been received on a virtual interface
-             from a router whose configuration parameters
-             conflict with this router's configuration
-             parameters.  Note that the event optionMismatch
-             should cause a trap only if it prevents an
-             adjacency from forming."
-          ::= { ospfTraps 5 }
-
-     ospfIfAuthFailure NOTIFICATION-TYPE
-          OBJECTS { ospfRouterId, -- The originator of the trap
-             ospfIfIpAddress,
-             ospfAddressLessIf,
-             ospfPacketSrc,  -- The source IP address
-             ospfConfigErrorType, -- authTypeMismatch or
-                                  -- authFailure
-             ospfPacketType
-             }
-          STATUS       current
-          DESCRIPTION
-             "An ospfIfAuthFailure trap signifies that a
-             packet has been received on a non-virtual
-             interface from a router whose authentication key
-             or authentication type conflicts with this
-             router's authentication key or authentication
-             type."
-          ::= { ospfTraps 6 }
-
-     ospfVirtIfAuthFailure NOTIFICATION-TYPE
-          OBJECTS { ospfRouterId, -- The originator of the trap
-             ospfVirtIfAreaId,
-             ospfVirtIfNeighbor,
-             ospfConfigErrorType, -- authTypeMismatch or
-                                  -- authFailure
-             ospfPacketType
-             }
-          STATUS       current
-          DESCRIPTION
-             "An ospfVirtIfAuthFailure trap signifies that a
-             packet has been received on a virtual interface
-             from a router whose authentication key or
-             authentication type conflicts with this router's
-             authentication key or authentication type."
-
-          ::= { ospfTraps 7 }
-
-     ospfIfRxBadPacket NOTIFICATION-TYPE
-          OBJECTS { ospfRouterId, -- The originator of the trap
-             ospfIfIpAddress,
-             ospfAddressLessIf,
-             ospfPacketSrc,  -- The source IP address
-             ospfPacketType
-             }
-          STATUS       current
-          DESCRIPTION
-             "An ospfIfRxBadPacket trap signifies that an
-             OSPF packet has been received on a non-virtual
-             interface that cannot be parsed."
-          ::= { ospfTraps 8 }
-
-     ospfVirtIfRxBadPacket NOTIFICATION-TYPE
-          OBJECTS { ospfRouterId, -- The originator of the trap
-            ospfVirtIfAreaId,
-            ospfVirtIfNeighbor,
-            ospfPacketType
-            }
-          STATUS       current
-          DESCRIPTION
-             "An ospfVirtIfRxBadPacket trap signifies that an OSPF
-             packet has been received on a virtual interface
-             that cannot be parsed."
-          ::= { ospfTraps 9 }
-
-     ospfTxRetransmit NOTIFICATION-TYPE
-          OBJECTS { ospfRouterId, -- The originator of the trap
-             ospfIfIpAddress,
-             ospfAddressLessIf,
-             ospfNbrRtrId, -- Destination
-             ospfPacketType,
-             ospfLsdbType,
-             ospfLsdbLsid,
-             ospfLsdbRouterId
-             }
-           STATUS       current
-           DESCRIPTION
-              "An ospfTxRetransmit trap signifies than an
-              OSPF packet has been retransmitted on a
-              non-virtual interface.  All packets that may be
-              retransmitted are associated with an LSDB entry.
-              The LS type, LS ID, and Router ID are used to
-              identify the LSDB entry."
-           ::= { ospfTraps 10 }
-
-     ospfVirtIfTxRetransmit NOTIFICATION-TYPE
-          OBJECTS { ospfRouterId, -- The originator of the trap
-             ospfVirtIfAreaId,
-             ospfVirtIfNeighbor,
-             ospfPacketType,
-             ospfLsdbType,
-             ospfLsdbLsid,
-             ospfLsdbRouterId
-             }
-          STATUS       current
-          DESCRIPTION
-             "An ospfVirtIfTxRetransmit trap signifies than an
-             OSPF packet has been retransmitted on a virtual
-             interface.  All packets that may be retransmitted
-             are associated with an LSDB entry.  The LS
-             type, LS ID, and Router ID are used to identify
-             the LSDB entry."
-          ::= { ospfTraps 11 }
-
-     ospfOriginateLsa NOTIFICATION-TYPE
-          OBJECTS { ospfRouterId, -- The originator of the trap
-             ospfLsdbAreaId,  -- 0.0.0.0 for AS Externals
-             ospfLsdbType,
-             ospfLsdbLsid,
-             ospfLsdbRouterId
-             }
-          STATUS       current
-          DESCRIPTION
-             "An ospfOriginateLsa trap signifies that a new
-             LSA has been originated by this router.  This
-             trap should not be invoked for simple refreshes
-             of LSAs (which happens every 30 minutes), but
-             instead will only be invoked when an LSA is
-             (re)originated due to a topology change.
-             Additionally, this trap does not include LSAs that
-             are being flushed because they have reached
-             MaxAge."
-          ::= { ospfTraps 12 }
-
-     ospfMaxAgeLsa NOTIFICATION-TYPE
-          OBJECTS { ospfRouterId, -- The originator of the trap
-             ospfLsdbAreaId,  -- 0.0.0.0 for AS Externals
-             ospfLsdbType,
-             ospfLsdbLsid,
-             ospfLsdbRouterId
-             }
-          STATUS       current
-          DESCRIPTION
-             "An ospfMaxAgeLsa trap signifies that one of
-             the LSAs in the router's link state database has
-             aged to MaxAge."
-          ::= { ospfTraps 13 }
-
-     ospfLsdbOverflow NOTIFICATION-TYPE
-          OBJECTS { ospfRouterId, -- The originator of the trap
-             ospfExtLsdbLimit
-             }
-
-          STATUS       current
-          DESCRIPTION
-             "An ospfLsdbOverflow trap signifies that the
-             number of LSAs in the router's link state
-             database has exceeded ospfExtLsdbLimit."
-          ::= { ospfTraps 14 }
-
-     ospfLsdbApproachingOverflow NOTIFICATION-TYPE
-          OBJECTS { ospfRouterId, -- The originator of the trap
-             ospfExtLsdbLimit
-             }
-          STATUS       current
-          DESCRIPTION
-             "An ospfLsdbApproachingOverflow trap signifies
-             that the number of LSAs in the router's
-             link state database has exceeded ninety percent of
-             ospfExtLsdbLimit."
-          ::= { ospfTraps 15 }
-
-     ospfIfStateChange NOTIFICATION-TYPE
-          OBJECTS { ospfRouterId, -- The originator of the trap
-             ospfIfIpAddress,
-             ospfAddressLessIf,
-             ospfIfState   -- The new state
-             }
-          STATUS       current
-          DESCRIPTION
-             "An ospfIfStateChange trap signifies that there
-             has been a change in the state of a non-virtual
-             OSPF interface.  This trap should be generated
-             when the interface state regresses (e.g., goes
-             from Dr to Down) or progresses to a terminal
-             state (i.e., Point-to-Point, DR Other, Dr, or
-             Backup)."
-          ::= { ospfTraps 16 }
-
-     ospfNssaTranslatorStatusChange NOTIFICATION-TYPE
-          OBJECTS { ospfRouterId, -- The originator of the trap
-             ospfAreaId,
-             ospfAreaNssaTranslatorState -- The current translation
-                                         -- status
-             }
-          STATUS       current
-          DESCRIPTION
-             "An ospfNssaTranslatorStatusChange trap indicates that
-             there has been a change in the router's ability to
-             translate OSPF type-7 LSAs into OSPF type-5 LSAs.
-             This trap should be generated when the translator
-             status transitions from or to any defined status on
-             a per-area basis."
-          ::= { ospfTraps 17 }
-
-     ospfRestartStatusChange NOTIFICATION-TYPE
-          OBJECTS { ospfRouterId, -- The originator of the trap
-                    ospfRestartStatus,
-                    ospfRestartInterval,
-                    ospfRestartExitReason
-                  }
-          STATUS       current
-          DESCRIPTION
-             "An ospfRestartStatusChange trap signifies that
-             there has been a change in the graceful restart
-             state for the router.  This trap should be
-             generated when the router restart status
-             changes."
-          ::= { ospfTraps 18 }
-
-     ospfNbrRestartHelperStatusChange NOTIFICATION-TYPE
-          OBJECTS { ospfRouterId, -- The originator of the trap
-                    ospfNbrIpAddr,
-                    ospfNbrAddressLessIndex,
-                    ospfNbrRtrId,
-                    ospfNbrRestartHelperStatus,
-                    ospfNbrRestartHelperAge,
-                    ospfNbrRestartHelperExitReason
-                  }
-          STATUS       current
-          DESCRIPTION
-             "An ospfNbrRestartHelperStatusChange trap signifies that
-             there has been a change in the graceful restart
-             helper state for the neighbor.  This trap should be
-             generated when the neighbor restart helper status
-             transitions for a neighbor."
-          ::= { ospfTraps 19 }
-
-     ospfVirtNbrRestartHelperStatusChange NOTIFICATION-TYPE
-          OBJECTS { ospfRouterId, -- The originator of the trap
-                    ospfVirtNbrArea,
-                    ospfVirtNbrRtrId,
-                    ospfVirtNbrRestartHelperStatus,
-                    ospfVirtNbrRestartHelperAge,
-                    ospfVirtNbrRestartHelperExitReason
-                  }
-          STATUS       current
-          DESCRIPTION
-             "An ospfVirtNbrRestartHelperStatusChange trap signifies
-             that there has been a change in the graceful restart
-             helper state for the virtual neighbor.  This trap should
-             be generated when the virtual neighbor restart helper
-             status transitions for a virtual neighbor."
-          ::= { ospfTraps 20 }
-
-   --  conformance information
-
-   ospfTrapConformance OBJECT IDENTIFIER ::= { ospfTrap 3 }
-   ospfTrapGroups      OBJECT IDENTIFIER ::= { ospfTrapConformance 1 }
-   ospfTrapCompliances OBJECT IDENTIFIER ::= { ospfTrapConformance 2 }
-
-   --  compliance statements
-
-   ospfTrapCompliance MODULE-COMPLIANCE
-        STATUS       obsolete
-        DESCRIPTION
-           "The compliance statement."
-        MODULE       -- this module
-        MANDATORY-GROUPS { ospfTrapControlGroup }
-
-        GROUP       ospfTrapControlGroup
-        DESCRIPTION
-           "This group is optional but recommended for all
-           OSPF systems."
-        ::= { ospfTrapCompliances 1 }
-
-   ospfTrapCompliance2 MODULE-COMPLIANCE
-        STATUS       current
-        DESCRIPTION
-           "The compliance statement."
-        MODULE       -- this module
-        MANDATORY-GROUPS { ospfTrapControlGroup, ospfTrapEventGroup }
-        OBJECT       ospfConfigErrorType
-        MIN-ACCESS   accessible-for-notify
-        DESCRIPTION
-           "This object is only required to be supplied within
-           notifications."
-        OBJECT       ospfPacketType
-        MIN-ACCESS   accessible-for-notify
-        DESCRIPTION
-           "This object is only required to be supplied within
-           notifications."
-        OBJECT       ospfPacketSrc
-        MIN-ACCESS   accessible-for-notify
-        DESCRIPTION
-           "This object is only required to be supplied within
-           notifications."
-        ::= { ospfTrapCompliances 2 }
-
-   --  units of conformance
-
-     ospfTrapControlGroup    OBJECT-GROUP
-          OBJECTS { ospfSetTrap,
-                    ospfConfigErrorType,
-                    ospfPacketType,
-                    ospfPacketSrc }
-          STATUS       current
-          DESCRIPTION
-             "These objects are required to control traps
-             from OSPF systems."
-          ::= { ospfTrapGroups 1 }
-
-     ospfTrapEventGroup       NOTIFICATION-GROUP
-          NOTIFICATIONS {
-             ospfVirtIfStateChange,
-             ospfNbrStateChange,
-             ospfVirtNbrStateChange,
-             ospfIfConfigError,
-             ospfVirtIfConfigError,
-             ospfIfAuthFailure,
-             ospfVirtIfAuthFailure,
-             ospfIfRxBadPacket,
-             ospfVirtIfRxBadPacket,
-             ospfTxRetransmit,
-             ospfVirtIfTxRetransmit,
-             ospfOriginateLsa,
-             ospfMaxAgeLsa,
-             ospfLsdbOverflow,
-             ospfLsdbApproachingOverflow,
-             ospfIfStateChange,
-             ospfNssaTranslatorStatusChange,
-             ospfRestartStatusChange,
-             ospfNbrRestartHelperStatusChange,
-             ospfVirtNbrRestartHelperStatusChange
-             }
-          STATUS        current
-          DESCRIPTION
-             "A grouping of OSPF trap events, as specified
-             in NOTIFICATION-TYPE constructs."
-          ::= { ospfTrapGroups 2 }
-
-   END
-
